@@ -12,7 +12,7 @@ pipeline {
 
             withAWS(credentials:'aws-static', region:'us-west-2') {
                 // upload index.html to s3 bucket
-                s3Upload(file:'index.html', bucket:'bucketforudacitydevopsnanodegreejenkinsproject', path:'')
+                s3Upload(bucket:'bucketforudacitydevopsnanodegreejenkinsproject', path:'', includePathPattern:'*.html')
             }
 
         }
