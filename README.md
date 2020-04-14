@@ -49,3 +49,9 @@ for udacity devops nanodegree
 }
 ```
 
+## modify jenkinesfile
+- add withaws and s3upload to change the pipeline and test it
+- install tidy for linting  
+`sudo apt-get install -y tid`
+- change jenkinsfile to add html linting stage, this should find the error in the original html
+
