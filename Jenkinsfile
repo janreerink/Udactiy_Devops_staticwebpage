@@ -9,6 +9,12 @@ pipeline {
                     ls -lah
                     '''
             }
+
+            withAWS(credentials:'aws-static', region:'us-west-2') {
+                // upload index.html to s3 bucket
+                s3Upload(file:'index.html', bucket:'bucketforudacitydevopsnanodegreejenkinsproject', path:'index.html')
+            }
+
         }
     }
 }

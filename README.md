@@ -25,3 +25,27 @@ for udacity devops nanodegree
 
 ## Set up github repo for static website
 - With index.html and jenkinsfile
+- Connect git to jenkins (preferably using github access token) to build pipeline. Change pipeline to check repo for changes every 2 minutes.
+
+## Setup jenkins credentials in AWS
+- In Jenkins credentials menu select global, aws from dropdown and use key generated in AWS IAM
+
+## Setup S3 bucket
+- Create new S3 bucket without public access restrictions, note name and region
+- In properties configure for static website hosting with index.html
+- Enter following bucket policy:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::bucketforudacitydevopsnanodegreejenkinsproject/*"
+        }
+    ]
+}
+```
+
