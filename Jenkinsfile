@@ -9,6 +9,7 @@ pipeline {
                     ls -lah
                     '''
             }
+        }
         stage('UploadS3') {
             steps {
                 withAWS(credentials:'aws-static', region:'us-west-2') {
@@ -16,7 +17,7 @@ pipeline {
                     s3Upload(file:'index.html', pathStyleAccessEnabled:true, payloadSigningEnabled: true, bucket:'bucketforudacitydevopsnanodegreejenkinsproject', path:'')
                 }
             }
-
         }
+        
     }
 }
