@@ -3,9 +3,13 @@ for udacity devops nanodegree
 
 ## Prepare AWS 
 - Create IAM user, log in with new user. Create key-pair and launch EC2 instance.
+  ![8](data/screenshot-01.png)
+  
 - Create security group for new instance:  
   - add TCP inbound rule, port 8080, source 0.0.0.0/0
   - add SSH rule, port 22, source 'my ip'
+
+  ![8](data/screenshot-02.png)
 
 ## Install Jenkins on EC2
 - Update OS, install JDK, get the repo for latest Jenkins version, install and verify service is running.
@@ -17,19 +21,20 @@ for udacity devops nanodegree
 - `sudo apt update`
 - `sudo apt install jenkins`
 - `sudo systemctl status jenkins`
-
+  ![8](data/screenshot-03.png)
 ## Setup jenkins
 - Navigate to port 8080 on EC2 instance
 - Use `sudo cat /var/lib/jenkins/secrets/initialAdminPassword` to retrieve install pwd, create new admin
 - Install suggested plugins, then manually add Blue Ocean Aggregator and pipeline-aws
+  ![8](data/screenshot-04.png)
 
 ## Set up github repo for static website
 - With index.html and jenkinsfile
 - Connect git to jenkins (preferably using github access token) to build pipeline. Change pipeline to check repo for changes every 2 minutes.
-
+  ![8](data/screenshot-05.png)
 ## Setup jenkins credentials in AWS
 - In Jenkins credentials menu select global, aws from dropdown and use key generated in AWS IAM
-
+  
 ## Setup S3 bucket
 - Create new S3 bucket without public access restrictions, note name and region
 - In properties configure for static website hosting with index.html
@@ -48,10 +53,15 @@ for udacity devops nanodegree
     ]
 }
 ```
+  ![8](data/screenshot-06.png)
 
 ## modify jenkinesfile
 - add withaws and s3upload to change the pipeline and test it
 - install tidy for linting  
 `sudo apt-get install -y tid`
-- change jenkinsfile to add html linting stage, this should find the error in the original html
+- change jenkinsfile to add html linting stage, this finds the error in the original html and breaks the build:  
+![8](data/screenshot-07.png)
+- finally, fix error in html; linting stafe should complete now  
+![8](data/screenshot-08.png)
+
 
